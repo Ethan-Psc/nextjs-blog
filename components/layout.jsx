@@ -31,6 +31,8 @@ export default function Layout({ children, home }) {
               src="/images/profile.jpg"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
               alt={name}
+              width="200"
+              height="200"
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
@@ -41,6 +43,8 @@ export default function Layout({ children, home }) {
                 src="/images/profile.jpg"
                 className={`${styles.headerImage} ${utilStyles.borderCircle}`}
                 alt={name}
+                width="200"
+                height="200"
               />
             </Link>
             <h2 className={utilStyles.headingLg}>
