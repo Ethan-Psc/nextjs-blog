@@ -4,6 +4,7 @@ import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
+import { getUserFromReq } from 'utils/server'
 const self_introduction = 'Hello,I‘m Ethan. I am a developing FE engineer!'
 const self_description = ` (This is a sample website - I’ll be building a site like this on
 <a href="https://www.nextjs.cn/docs">our Next.js tutorial</a>.)`
@@ -37,7 +38,17 @@ export default function Home({ allPostsData }) {
     </Layout>
   )
 }
-export async function getStaticProps() {
+export async function getServerSideProps(ctx) {
+  console.log(ctx)
+  const user = await getUserFromReq(ctx.req);
+  if (!user) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false
+      }
+    }
+  }
   const allPostsData = getSortedPostsData();
   return {
     props: {
@@ -45,10 +56,3 @@ export async function getStaticProps() {
     }
   }
 }
-// export async function getServerSideProps(context) {
-//   return {
-//     props: {
-
-//     }
-//   }
-// }

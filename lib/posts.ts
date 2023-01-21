@@ -3,6 +3,12 @@ import path from "path";
 import matter from "gray-matter";
 import html from "remark-html";
 import { remark } from "remark";
+interface PostData {
+  id: string;
+  date: string;
+  contentHtml: string;
+  title: string;
+}
 const postsDir = path.join(process.cwd(), "posts");
 export function getSortedPostsData() {
   const fileNames = fs.readdirSync(postsDir);
@@ -11,12 +17,23 @@ export function getSortedPostsData() {
     const fullPath = path.join(postsDir, fileName);
     const fullContents = fs.readFileSync(fullPath);
     const matterResult = matter(fullContents);
+    const fileStatus = fs.statSync(fullPath);
+    if (typeof matterResult.data.title === "undefined") {
+      matterResult.data.title = id;
+    }
+    if (typeof matterResult.data.date === "undefined") {
+      matterResult.data.date = fileStatus.mtime.toISOString();
+    }
     return {
       id,
       ...matterResult.data,
-    };
+    } as PostData;
   });
-  return allPostsData.sort((a, b) => a.date - b.date);
+  return allPostsData.sort((a: PostData, b: PostData) => {
+    if (a.date < b.date) return 1;
+    else if (a.date === b.date) return 0;
+    else return -1;
+  });
 }
 export function getAllPostIds() {
   const fileNames = fs.readdirSync(postsDir);

@@ -6,7 +6,8 @@ import Img from "next/image"
 const name = "Ethan";
 export const siteTitle = "Next.js Sample Website";
 
-export default function Layout({ children, home }) {
+export default function Layout(props) {
+  const { children, home } = props;
   return (
     <div className={styles.container}>
       <Head>
