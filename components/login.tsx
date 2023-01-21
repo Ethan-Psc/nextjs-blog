@@ -4,6 +4,7 @@ import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 import { useMutation } from 'react-query';
 import { memo } from 'react';
+import { useRouter } from 'next/router'
 const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
 };
@@ -14,12 +15,15 @@ export const LoginForm = (props) => {
     const loginAction = useMutation(loginAccount, {
         onSuccess() {
             alert('success');
+            router.push('/')
+
         }
     });
     const onClickLogin = (values) => {
         const { username, password } = values
         loginAction.mutate({ username, password });
     }
+    const router = useRouter();
     return (
         <>
             <Form onFinish={(values) => onClickLogin(values)} onFinishFailed={onFinishFailed}>
