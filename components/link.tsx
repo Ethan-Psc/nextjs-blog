@@ -27,9 +27,6 @@ export const LinkForm = () => {
         linkAction.mutate({ title, url });
     }
     const getLinksQuery = useQuery('getLinks', getLinks);
-    useEffect(() => {
-        console.log(getLinksQuery);
-    }, [])
     return (
         <div>
             <Form onFinish={(values) => onClickCreateLink(values)}>
