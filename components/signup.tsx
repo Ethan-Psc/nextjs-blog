@@ -33,7 +33,7 @@ export const SignupForm = (props) => {
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        Signup
                     </Button>
                 </Form.Item>
             </Form>

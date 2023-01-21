@@ -11,6 +11,16 @@ datasource db {
 }
 
 model User {
-   name String @id @unique
+   name String  @id @unique
    password String
+   links Link[]
+}
+
+model Link {
+   id String @id @default(uuid())
+   title String
+   url String
+   creatorName String
+   creator User @relation(fields: [creatorName], references: [name])
+   createdAt DateTime @default(now())
 }

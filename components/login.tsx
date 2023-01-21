@@ -3,7 +3,7 @@
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 import { useMutation } from 'react-query';
-
+import { memo } from 'react';
 const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
 };
@@ -46,10 +46,12 @@ export const LoginForm = (props) => {
       border-none
       cursor-pointer
     " type="primary" htmlType="submit">
-                        Submit
+                        Login
                     </Button>
                 </Form.Item>
             </Form>
         </>
     )
 }
+
+export default memo(LoginForm);

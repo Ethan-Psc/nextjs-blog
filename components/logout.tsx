@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import axios from 'axios';
-import { useQuery } from 'react-query';
+import { memo } from 'react';
 export function Logout() {
     const onClickLogout = async () => {
         await axios.get('/api/logout');
@@ -12,3 +12,4 @@ export function Logout() {
     )
 }
 
+export default memo(Logout);

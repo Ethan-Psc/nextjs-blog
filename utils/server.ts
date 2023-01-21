@@ -2,10 +2,8 @@ import nc from "next-connect";
 import * as Boom from "@hapi/boom";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { PrismaClient } from "@prisma/client";
-
 import jwt from "jsonwebtoken";
-
+import { PrismaClient } from '@prisma/client';
 export const prisma: PrismaClient = global.prisma || new PrismaClient();
 
 if (process.env.NODE_ENV !== "production") global.prisma = prisma;
@@ -53,7 +51,6 @@ export const getUserFromReq = async (req) => {
 
 export const authMiddleware = () => async (req, res, next) => {
   const user = await getUserFromReq(req);
-
   if (!user) {
     throw Boom.forbidden("Please login first");
   } else {
@@ -61,7 +58,7 @@ export const authMiddleware = () => async (req, res, next) => {
     next();
   }
 };
-
+// 中间件
 export const linkCreatorGuard =
   (getLinkId: (req) => string) => async (req, res, next) => {
     const user = req.user;
