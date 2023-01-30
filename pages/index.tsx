@@ -39,16 +39,16 @@ export default function Home({ allPostsData }) {
   )
 }
 export async function getServerSideProps(ctx) {
-  console.log(ctx)
-  const user = await getUserFromReq(ctx.req);
-  if (!user) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false
-      }
-    }
-  }
+  // console.log(ctx)
+  // const user = await getUserFromReq(ctx.req);
+  // if (!user) {
+  //   return {
+  //     redirect: {
+  //       destination: '/login',
+  //       permanent: false
+  //     }
+  //   }
+  // }
   const allPostsData = getSortedPostsData();
   return {
     props: {
