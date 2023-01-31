@@ -6,8 +6,8 @@ import Link from 'next/link'
 import Date from '../components/date'
 import { getUserFromReq } from 'utils/server'
 const self_introduction = 'Hello,I‘m Ethan. I am a developing FE engineer!'
-const self_description = ` (This is a sample website - I’ll be building a site like this on
-<a href="https://www.nextjs.cn/docs">our Next.js tutorial</a>.)`
+// const self_description = ` (This is a sample website - I’ll be building a site like this on
+// <a href="https://www.nextjs.cn/docs">our Next.js tutorial</a>.)`
 export default function Home({ allPostsData }) {
   return (
     <Layout home>
@@ -16,7 +16,7 @@ export default function Home({ allPostsData }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <p>{self_introduction}</p>
-        <p dangerouslySetInnerHTML={{ __html: self_description }} />
+        {/* <p dangerouslySetInnerHTML={{ __html: self_description }} /> */}
       </section>
       <section className={utilStyles.headingMd}>…</section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
